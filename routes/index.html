@@ -27,7 +27,7 @@
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {            
-			var socket = io.connect('http://localhost:3000');            
+			var socket = io();            
 			if (socket != null && socket != undefined) {
 				//console.log(JSON.stringify(socket));                
 				var welcome = document.createElement('li');                

@@ -1,5 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
+
+router.use(function(res, req, next) {
+    console.log('\n' + moment().format());
+    next();
+})
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
