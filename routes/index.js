@@ -6,7 +6,8 @@ router.get('/', function(req, res, next) {
   res.sendFile(__dirname + '/index.html');
 });
 
-router.get('/tmp', function(req, res){
+router.get('/tmp/:value', function(req, res){
+  console.log("value : " + req.params.value);
   res.send("hello world");
 })
 
