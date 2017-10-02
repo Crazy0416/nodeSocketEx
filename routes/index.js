@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 
+var cnt = 0;
+
 router.use(function(res, req, next) {
     console.log('\n' + moment().format());
     next();
@@ -14,7 +16,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/tmp/:value', function(req, res){
   console.log("value : " + req.params.value);
-  res.send("hello world");
+  var time = moment().format();
+  cnt++;
+  var sendString = 'Time : ' + time + " / count : " + cnt + " / data : " + req.params.value;
+  res.send(sendString);
 })
 
 module.exports = router;
