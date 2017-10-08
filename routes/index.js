@@ -23,8 +23,8 @@ router.get('/tmp/:value', function(req, res){
   res.send(sendString);
 })
 
-router.get('/data/:value', function(req, res){
-    emotion=req.params.value;
+router.get('/emotion/:emo', function(req, res){
+    var emotion = req.params.emo;
     console.log("emotion : " + emotion);
     //res.sendFile(__dirname + '/svgPage.html');
     io.emit("ChangeData", emotion);
