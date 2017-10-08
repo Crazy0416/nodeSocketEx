@@ -6,6 +6,7 @@ cnt = 0;
 emotion = 0;
 router.use(function(res, req, next) {
     console.log('\n' + moment().format());
+    console.log(res.header);
     next();
 })
 
