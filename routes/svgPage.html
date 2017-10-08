@@ -1,0 +1,62 @@
+<!DOCTYPE>
+<html>
+<head>
+	<style>
+		#svgout{
+			width:800px;
+			height:800px;
+		}
+	</style>
+	<script type="text/javascript" src="/Snap.svg-0.5.1/dist/snap.svg-min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		DATA = 100;
+		window.onload = function() {            
+			var socket = io();            
+			if (socket != null && socket != undefined) {
+			    console.log("ok");
+			    var s = Snap("#svgout");
+			    var g = s.group();
+			    var candle = Snap.load("/images/sample_svg.svg", function(loadedFragment){
+			        g.append(loadedFragment);
+                    g.hover(function(){
+                        g.animate({transform: 's2r45, 150, 150'}, 1500, mina.elastic());
+					}, function(){
+                        g.animate({transform: 's1r0, 150, 150'}, 1500, mina.elastic());
+                    })
+				});
+				socket.on("ChangeData", function(data){
+				    DATA = data;
+				    console.log("data.value : " + data);
+				    console.log("Data change : " + DATA);
+				    document.getElementById("text").innerHTML = DATA;
+				    s.animate({transform: 'r360, 225, 225'}, 1000);
+				    g.animate({transform: 's2r45, 150, 150'}, 1500, mina.elastic());
+				})
+//				var welcome = document.createElement('li');                
+//				welcome.innerHTML = '<system> 채팅을 시작합니다.';                
+//				document.getElementById('chat').appendChild(welcome);                 
+//				socket.on('rMsg', function(data) {                    
+//					var li = document.createElement('li');                    
+//					li.innerHTML = data.name + ' : ' + data.msg;                    
+//					document.getElementById('chat').appendChild(li);                
+//				});                 
+//				document.getElementById('submit').onclick = function() {                    
+//					var val = document.getElementById('msg').value;                    
+//					var name = document.getElementById('name').value;                    
+//					socket.emit('sMsg', {                        
+//						name: name, msg: val                    
+//					});                    
+//					document.getElementById('msg').value = '';                
+//				};             
+			}        
+		};
+	</script>
+</head>
+
+<body>
+	<svg id="svgout">
+	</svg>
+	<h1 id="text">1</h1>
+</body>
+</html>

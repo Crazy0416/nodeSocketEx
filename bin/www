@@ -13,7 +13,7 @@ var http = require('http');
  */
 
 var server = http.createServer(app);
-var io = require('socket.io')(http.Server(app)).listen(server);
+io = require('socket.io')(http.Server(app)).listen(server);
 require('../routes/socketio')(io);                                    // socket io 모듈화
 
 var port = normalizePort(process.env.PORT || '3000');
